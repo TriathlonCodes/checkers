@@ -3,17 +3,21 @@ var game = new CheckersGame(checkerBoard)
 $(document).ready(function(){
   displayChips()
   // $("#board td").on("click", ".potentials", moveChip)
-  $("#board td").on("click", function(){
-    if ($(this).hasClass("potentials")) {
-      moveChip()
+  $("#board").on("click", "td", function(){
+    if ($(this).hasClass("potential")) {
+      moveChip($(this))
     } else {
-      showOptions()
+      showOptions($(this))
     }
   })
 })
 
-var moveChip = function(){
-  game.moveChip(parseInt($(".selected").attr("id")), parseInt($(this).attr("id")));
+var moveChip = function($goToBlock){
+  $("td").css("background-color", "white")
+
+  console.log("Hit move chip!")
+  // game.moveChip(parseInt($(".selected").attr("id")), parseInt($goToBlock.attr("id")));
+  game.fullTurn(parseInt($(".selected").attr("id")), parseInt($goToBlock.attr("id")))
 }
 
 var displayChips = function(){
@@ -30,11 +34,11 @@ var displayChips = function(){
   }
 }
 
-function showOptions(){
+function showOptions($block){
   $("td").css("background-color", "white")
-  if ($(this).children().attr("class") == game.playerTurn + " chip"){
-    var location = parseInt($(this).attr("id"))
-    $(this).addClass("selected")
+  if ($block.children().attr("class") === game.playerTurn + " chip"){
+    var location = parseInt($block.attr("id"))
+    $block.addClass("selected")
     // console.log(location)
     var potentials = [[location +7, location +14], [location -7, location -14], [location +9, location +18], [location -9, location -18]]
     for (loc in potentials){
@@ -48,5 +52,6 @@ function showOptions(){
     }
   } else {
     console.log("Not Hit!")
+    console.log($block)
   }
 }

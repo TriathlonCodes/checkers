@@ -3,7 +3,13 @@ write a basic checkers game in a time crunch as an exercise to stay sharp. comma
 
 ##Methodology and Process
 
-<i>### Nov 12, 2015</i>
+###<i> Nov 17, 2015</i>
+
+###Reflection
+
+I've reworked he checkers game so that it is actually following most of the rules of checkers, though I have not yet implemented the rules about kings and only moving forward. What I am discovering is that my functions for moving and jumping may not be entirely necessary. What I mean is with my added method of show options which will in turn show all the potential options for the player within the board constraints.
+
+###<i> Nov 12, 2015</i>
 
 ### Reflection
 
