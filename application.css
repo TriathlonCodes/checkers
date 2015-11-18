@@ -7,3 +7,26 @@ td {
   height: 4em;
   border: 2px solid black;
 }
+
+.chip {
+  width: 1em;
+  height: 1em;
+  /*background-color: #123123;*/
+  padding: 1em;
+  border-radius: 1em;
+  /*position: absolute;*/
+}
+
+.black {
+  background-color: black;
+  color: white;
+}
+
+.red {
+  background-color: red;
+  color: white;
+}
+
+.kinged {
+  border: .3em solid grey;
+}
