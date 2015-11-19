@@ -43,11 +43,11 @@ var displayChips = function(){
 
 function showOptions($block){
   if ($block.children().attr("class") === game.playerTurn + " chip"
-    || $block.children().attr("class") === game.playerTurn + " chip kinged"
-    ){
+    || $block.children().attr("class") === game.playerTurn + " chip kinged"){
     var location = parseInt($block.attr("id"))
     $block.addClass("selected")
     var potentials = game.board[location].potentials()
+    console.log(potentials)
     for (loc in potentials){
       if (game.board[potentials[loc][0]] == null && game.boardConstraints(location, potentials[loc][0])){
         $("#" + potentials[loc][0]).css("background-color", "green").addClass("potential")
@@ -55,6 +55,15 @@ function showOptions($block){
         && game.boardConstraints(location, potentials[loc][1])
         && game.board[potentials[loc][0]].color == game.otherPlayer){
         $("#" + potentials[loc][1]).css("background-color", "green").addClass("potential")
+      }
+        // check for doublejump
+      if (game.board[potentials[loc][1]] == null
+          && game.board[potentials[loc][0]].color == game.otherPlayer){
+          $("#" + potentials[loc][1]).css("background-color", "green").addClass("potential")
+      }
+      if (game.board[potentials[loc][1]] == null
+          && game.board[potentials[loc][0]].color == game.otherPlayer){
+          $("#" + potentials[loc][1]).css("background-color", "green").addClass("potential")
       }
     }
   } else {
