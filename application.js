@@ -4,6 +4,7 @@ $(document).ready(function(){
   displayChips()
   // $("#board td").on("click", ".potentials", moveChip)
   $("#board").on("click", "td", function(){
+    console.log("hit")
     if ($(this).hasClass("potential")) {
       moveChip($(this))
     } else {
@@ -41,12 +42,12 @@ var displayChips = function(){
 }
 
 function showOptions($block){
-  // $("td").css("background-color", "white")
-  if ($block.children().attr("class") === game.playerTurn + " chip"){
+  if ($block.children().attr("class") === game.playerTurn + " chip"
+    || $block.children().attr("class") === game.playerTurn + " chip kinged"
+    ){
     var location = parseInt($block.attr("id"))
     $block.addClass("selected")
-    var potentials = [[location +7, location +14], [location -7, location -14], [location +9, location +18], [location -9, location -18]]
-
+    var potentials = game.board[location].potentials()
     for (loc in potentials){
       if (game.board[potentials[loc][0]] == null && game.boardConstraints(location, potentials[loc][0])){
         $("#" + potentials[loc][0]).css("background-color", "green").addClass("potential")
@@ -57,6 +58,7 @@ function showOptions($block){
       }
     }
   } else {
+    console.log("something ain't working")
   }
 }
 
