@@ -18,6 +18,10 @@ var moveChip = function($goToBlock){
   console.log("Hit move chip!")
   // game.moveChip(parseInt($(".selected").attr("id")), parseInt($goToBlock.attr("id")));
   game.fullTurn(parseInt($(".selected").attr("id")), parseInt($goToBlock.attr("id")))
+  displayChips()
+  if (game.hasWon()){
+    $("#winner").html("<h2>" + game.winner + " has won the game!</h2>")
+  }
 }
 
 var displayChips = function(){
@@ -38,18 +42,12 @@ var displayChips = function(){
 
 function showOptions($block){
   // $("td").css("background-color", "white")
-  console.log($block)
-  console.log(game.playerTurn)
   if ($block.children().attr("class") === game.playerTurn + " chip"){
     var location = parseInt($block.attr("id"))
     $block.addClass("selected")
-    // console.log(location)
     var potentials = [[location +7, location +14], [location -7, location -14], [location +9, location +18], [location -9, location -18]]
 
     for (loc in potentials){
-      console.log(game.board[potentials[loc][1]])
-      console.log(game.board[potentials[loc][0]])
-      console.log()
       if (game.board[potentials[loc][0]] == null && game.boardConstraints(location, potentials[loc][0])){
         $("#" + potentials[loc][0]).css("background-color", "green").addClass("potential")
       } else if (game.board[potentials[loc][1]] == null
@@ -59,7 +57,8 @@ function showOptions($block){
       }
     }
   } else {
-    console.log("Not Hit!")
-    console.log($block)
   }
 }
+
+
+
