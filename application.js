@@ -22,6 +22,8 @@ var moveChip = function($goToBlock){
 
 var displayChips = function(){
   $("td").empty()
+  $("td").removeClass("potential")
+  $("td").removeClass("selected")
   // potentials = []
   for(var i = 0; i < 64; i ++){
     var chip = game.board[i]
