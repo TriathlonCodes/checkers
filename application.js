@@ -37,18 +37,24 @@ var displayChips = function(){
 }
 
 function showOptions($block){
-  $("td").css("background-color", "white")
+  // $("td").css("background-color", "white")
+  console.log($block)
+  console.log(game.playerTurn)
   if ($block.children().attr("class") === game.playerTurn + " chip"){
     var location = parseInt($block.attr("id"))
     $block.addClass("selected")
     // console.log(location)
     var potentials = [[location +7, location +14], [location -7, location -14], [location +9, location +18], [location -9, location -18]]
+
     for (loc in potentials){
+      console.log(game.board[potentials[loc][1]])
+      console.log(game.board[potentials[loc][0]])
+      console.log()
       if (game.board[potentials[loc][0]] == null && game.boardConstraints(location, potentials[loc][0])){
         $("#" + potentials[loc][0]).css("background-color", "green").addClass("potential")
       } else if (game.board[potentials[loc][1]] == null
         && game.boardConstraints(location, potentials[loc][1])
-        && game.board[potentials[loc][0]] == game.otherPlayer){
+        && game.board[potentials[loc][0]].color == game.otherPlayer){
         $("#" + potentials[loc][1]).css("background-color", "green").addClass("potential")
       }
     }

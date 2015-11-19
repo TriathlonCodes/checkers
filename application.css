@@ -30,3 +30,7 @@ td {
 .kinged {
   border: .3em solid grey;
 }
+
+.potential {
+  background-color: green;
+}
