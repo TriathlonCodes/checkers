@@ -7,6 +7,8 @@ $(document).ready(function(){
     console.log("hit")
     if ($(this).hasClass("potential")) {
       moveChip($(this))
+    }
+
     } else {
       showOptions($(this))
     }
@@ -52,16 +54,16 @@ function showOptions($block){
       console.log(potentials[0][3][0])
       if (game.board[potentials[loc][0]] == null && game.boardConstraints(location, potentials[loc][0])){
         $("#" + potentials[loc][0]).css("background-color", "green").addClass("potential")
-        var jumpable = false
+
       } else if (game.board[potentials[loc][1]] == null
         && game.boardConstraints(location, potentials[loc][1])
         && game.board[potentials[loc][0]].color == game.otherPlayer){
-
+        //double jumps
         if (game.board[potentials[loc][2][1]] == null
           && game.boardConstraints(location, potentials[loc][2][0])
           && game.board[potentials[loc][2][0]].color == game.otherPlayer) {
-          $("#" + potentials[loc][1]).css("background-color", "yellow").addClass("doublejump")
-          $("#" + potentials[loc][2][1]).css("background-color", "green").addClass("potential")
+          $("#" + potentials[loc][1]).css("background-color", "yellow").addClass("midjump")
+          $("#" + potentials[loc][2][1]).css("background-color", "green").addClass("doublejump")
         } else {
           $("#" + potentials[loc][1]).css("background-color", "green").addClass("potential")
         }
@@ -69,8 +71,8 @@ function showOptions($block){
         if (game.board[potentials[loc][3][1]] == null
           && game.boardConstraints(location, potentials[loc][3][0])
           && game.board[potentials[loc][3][0]].color == game.otherPlayer) {
-          $("#" + potentials[loc][1]).css("background-color", "yellow").addClass("doublejump")
-          $("#" + potentials[loc][3][1]).css("background-color", "green").addClass("potential")
+          $("#" + potentials[loc][1]).css("background-color", "yellow").addClass("midjump")
+          $("#" + potentials[loc][3][1]).css("background-color", "green").addClass("doublejump")
         } else {
           $("#" + potentials[loc][1]).css("background-color", "green").addClass("potential")
         }
