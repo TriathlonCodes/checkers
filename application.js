@@ -1,4 +1,4 @@
-var game = new CheckersGame(blackBoard)
+var game = new CheckersGame(checkerBoard)
 // var potentials = []
 $(document).ready(function(){
   displayChips()
@@ -7,8 +7,6 @@ $(document).ready(function(){
     console.log("hit")
     if ($(this).hasClass("potential")) {
       moveChip($(this))
-    }
-
     } else {
       showOptions($(this))
     }
@@ -51,43 +49,36 @@ function showOptions($block){
     var potentials = game.board[location].potentials()
     // console.log(potentials)
     for (loc in potentials){
-      console.log(potentials[0][3][0])
-      if (game.board[potentials[loc][0]] == null && game.boardConstraints(location, potentials[loc][0])){
+      if (game.board[potentials[loc][0]] == null
+        && game.boardConstraints(location, potentials[loc][0])){
         $("#" + potentials[loc][0]).css("background-color", "green").addClass("potential")
 
       } else if (game.board[potentials[loc][1]] == null
+        && game.board[potentials[loc][0]]
         && game.boardConstraints(location, potentials[loc][1])
         && game.board[potentials[loc][0]].color == game.otherPlayer){
         //double jumps
         if (game.board[potentials[loc][2][1]] == null
-          && game.boardConstraints(location, potentials[loc][2][0])
+          && game.board[potentials[loc][2][0]]
+          && game.doubleJumpConstaints(location, potentials[loc][2][1])
           && game.board[potentials[loc][2][0]].color == game.otherPlayer) {
           $("#" + potentials[loc][1]).css("background-color", "yellow").addClass("midjump")
-          $("#" + potentials[loc][2][1]).css("background-color", "green").addClass("doublejump")
+          $("#" + potentials[loc][2][1]).css("background-color", "green").addClass("potential")
         } else {
           $("#" + potentials[loc][1]).css("background-color", "green").addClass("potential")
         }
 
         if (game.board[potentials[loc][3][1]] == null
-          && game.boardConstraints(location, potentials[loc][3][0])
+          && game.board[potentials[loc][3][0]]
+          && game.doubleJumpConstaints(location, potentials[loc][3][1])
           && game.board[potentials[loc][3][0]].color == game.otherPlayer) {
           $("#" + potentials[loc][1]).css("background-color", "yellow").addClass("midjump")
-          $("#" + potentials[loc][3][1]).css("background-color", "green").addClass("doublejump")
+          $("#" + potentials[loc][3][1]).css("background-color", "green").addClass("potential")
         } else {
           $("#" + potentials[loc][1]).css("background-color", "green").addClass("potential")
         }
 
       }
-
-        // check for doublejump
-      // if (game.board[potentials[loc][1]] == null
-      //     && game.board[potentials[loc][0]].color == game.otherPlayer){
-      //     $("#" + potentials[loc][1]).css("background-color", "green").addClass("potential")
-      // }
-      // if (game.board[potentials[loc][1]] == null
-      //     && game.board[potentials[loc][0]].color == game.otherPlayer){
-      //     $("#" + potentials[loc][1]).css("background-color", "green").addClass("potential")
-      // }
     }
   } else {
     console.log("something ain't working")

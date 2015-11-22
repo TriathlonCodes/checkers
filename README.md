@@ -3,6 +3,10 @@ write a basic checkers game in a time crunch as an exercise to stay sharp. comma
 
 ##Methodology and Process
 
+###<i> Nov 22, 2015</i>
+
+![double jump appears to work on the front end, but is not yet connectin properly to the backend](imgs/nov20.png)
+
 ###<i> Nov 17, 2015</i>
 
 ###Reflection
