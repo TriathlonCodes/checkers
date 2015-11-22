@@ -57,6 +57,7 @@ function showOptions($block){
         && game.board[potentials[loc][0]]
         && game.boardConstraints(location, potentials[loc][1])
         && game.board[potentials[loc][0]].color == game.otherPlayer){
+        var singleJump = true
         //double jumps
         if (game.board[potentials[loc][2][1]] == null
           && game.board[potentials[loc][2][0]]
@@ -64,8 +65,7 @@ function showOptions($block){
           && game.board[potentials[loc][2][0]].color == game.otherPlayer) {
           $("#" + potentials[loc][1]).css("background-color", "yellow").addClass("midjump")
           $("#" + potentials[loc][2][1]).css("background-color", "green").addClass("potential")
-        } else {
-          $("#" + potentials[loc][1]).css("background-color", "green").addClass("potential")
+          singleJump = false
         }
 
         if (game.board[potentials[loc][3][1]] == null
@@ -74,10 +74,12 @@ function showOptions($block){
           && game.board[potentials[loc][3][0]].color == game.otherPlayer) {
           $("#" + potentials[loc][1]).css("background-color", "yellow").addClass("midjump")
           $("#" + potentials[loc][3][1]).css("background-color", "green").addClass("potential")
-        } else {
-          $("#" + potentials[loc][1]).css("background-color", "green").addClass("potential")
+          singleJump = false
         }
 
+        if ( singleJump ) {
+          $("#" + potentials[loc][1]).css("background-color", "green").addClass("potential")
+        }
       }
     }
   } else {
