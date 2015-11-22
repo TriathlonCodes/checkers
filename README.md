@@ -3,6 +3,18 @@ write a basic checkers game in a time crunch as an exercise to stay sharp. comma
 
 ##Methodology and Process
 
+###<i> Nov 22, 2015</i>
+
+###Reflection
+
+I got the double jump to work both on the front end and the back end, but i am currently unhappy with how not DRY it is. In order to check for double jumps I have to do lots of arm waving to figure out what is and is not around the chip we are intending to move. I currently have the front end figuring out if you can double jump and therefore if you cannot single jump.
+
+I'm fairly comfortable with the separation of the frontend (application.js) ad the backend (checkers.js). Though it could be better, half the controller is just figuring out which options to show, and in doing that it I am communicating with the backend frequently. The frontend does know probably too much about the rules of checkers. This could be remedied by creating a method checkForSingleJump and a method checkForDoubleJump.
+
+![double jump appears to work on the front end, but is not yet connectin properly to the backend](imgs/nov20.png)
+
+I am considering making a second backend file to separate the checker board and the chips. It might make more sense as the program becomes more complex. At the moment Checkers.js is nearly 400 lines long. Though I am certain it could be shortened through signicant DRY'ing up, but at the moment in order to keep it managable I think splitting it into two files will be the better option. When I make it so the computer can play the game, I will definitely need to create more files.
+
 ###<i> Nov 17, 2015</i>
 
 ###Reflection
