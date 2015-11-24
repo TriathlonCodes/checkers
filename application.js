@@ -22,6 +22,8 @@ var moveChip = function($goToBlock){
   displayChips()
   if (game.hasWon()){
     $("#winner").html("<h2>" + game.winner + " has won the game!</h2>")
+  } else {
+    $("#winner").html("<h2>" + game.playerTurn + "'s turn.</h2>")
   }
 }
 
@@ -32,8 +34,15 @@ var displayChips = function(){
   // potentials = []
   for(var i = 0; i < 64; i ++){
     var chip = game.board[i]
+    if ( i % 2 === 0 && Math.floor(i / 8) % 2 === 0 ) {
+      $("#" + i).css("background-color", "lightgrey")
+    } else if (i % 2 === 1 && Math.floor(i / 8) % 2 === 1){
+      $("#" + i).css("background-color", "lightgrey")
+    }else{
+      $("#" + i).css("background-color", "#ff8080")
+    }
     if( chip != null ){
-      $("#" + i).html("<div class = '"+chip.color + " chip'>" + i + "</div>")
+      $("#" + i).html("<div class = '"+chip.color + " chip'></div>")
       if (chip.kinged == true){
         $("#" + i + " .chip").addClass("kinged")
       }
@@ -83,7 +92,6 @@ function showOptions($block){
       }
     }
   } else {
-    console.log("something ain't working")
   }
 }
 
