@@ -5,6 +5,7 @@ $(document).ready(function(){
   // $("#board td").on("click", ".potentials", moveChip)
   $("#board").on("click", "td", function(){
     console.log("hit")
+
     if ($(this).hasClass("potential")) {
       moveChip($(this))
     } else {
@@ -14,7 +15,7 @@ $(document).ready(function(){
 })
 
 var moveChip = function($goToBlock){
-  $("td").css("background-color", "white")
+  // $("td").css("background-color", "white")
 
   console.log("Hit move chip!")
   // game.moveChip(parseInt($(".selected").attr("id")), parseInt($goToBlock.attr("id")));
@@ -51,6 +52,9 @@ var displayChips = function(){
 }
 
 function showOptions($block){
+  $(".selected").removeClass(".selected")
+  $(".potential").removeClass(".potential")
+  displayChips()
   if ($block.children().attr("class") === game.playerTurn + " chip"
     || $block.children().attr("class") === game.playerTurn + " chip kinged"){
     var location = parseInt($block.attr("id"))
